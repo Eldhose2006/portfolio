@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+    <h3>Login page</h3>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="name" required><br>
+
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="email" required><br>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="password" required><br>
+
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password" required><br>
+
+    <div id="errorMsg" class="error" style="color: red;"></div><br>
+
+    <button id="submit">Submit</button>
+
+    <script>
+        document.getElementById('submit').addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent form submission (optional since no <form> tag)
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const cpassword = document.getElementById("confirm_password").value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            const emailpattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (name === "") {
+                errorMsg.innerText = "Please enter name";
+                return;
+            }
+            if (email === "") {
+                errorMsg.innerText = "Please enter email";
+                return;
+            }
+
+
+
+            if (!emailpattern.test(email)) {
+                errorMsg.innerText = "Please enter a valid email";
+                return;
+            }
+
+            if (password !== cpassword) {
+                errorMsg.innerText = "Passwords do not match";
+                return;
+            }
+
+            errorMsg.innerText = "";  // Clear error
+            alert("Form submitted!");
+        });
+    </script>
+</body>
+</html>

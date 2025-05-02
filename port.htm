@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        .error {
+            color: red;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My Portfolio</h1>
+
+    <div class="section">
+        <h2>About Me</h2>
+        <p>Hello! I'm a web developer passionate about building beautiful and functional websites.</p>
+    </div>
+
+    <div class="section">
+        <h2>skill</h2>
+        <ul>
+            <li>Personal Blog</li>
+            <li>E-commerce Website</li>
+            <li>python developer</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Contact Me</h2>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" placeholder="Enter your email"><br><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" placeholder="Enter your phone number"><br><br>
+
+        <div id="errorMsg" class="error"></div><br>
+
+        <button id="Submit">Submit</button>
+    </div>
+
+    <script>
+        document.getElementById('Submit').addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^[0-9]{10}$/;  // Simple: exactly 10 digits
+
+            if (!emailPattern.test(email)) {
+                errorMsg.innerText = "Please enter a valid email address.";
+                return;
+            }
+
+            if (!phonePattern.test(phone)) {
+                errorMsg.innerText = "Please enter a valid 10-digit phone number.";
+                return;
+            }
+
+            errorMsg.innerText = "";
+            alert("Thank you! Your message has been submitted.");
+        });
+    </script>
+
+</body>
+</html>
